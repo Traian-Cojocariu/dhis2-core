@@ -1583,8 +1583,7 @@ public abstract class AbstractTrackedEntityInstanceService
 
         if ( params.isDataSynchronizationQuery() )
         {
-            List<String> programs = trackedEntityInstance.getEnrollments().stream()
-                .map( Enrollment::getProgram )
+            List<String> programs = trackedEntityInstance.getEnrollments().stream().map( Enrollment::getProgram )
                 .collect( Collectors.toList() );
 
             readableAttributesCopy = readableAttributes.stream()
@@ -1596,10 +1595,8 @@ public abstract class AbstractTrackedEntityInstanceService
             {
                 Program program = getProgram( idSchemes, programUid );
 
-                readableAttributesCopy.addAll(
-                    program.getTrackedEntityAttributes().stream()
-                        .filter( att -> !att.getSkipSynchronization() )
-                        .collect( Collectors.toSet() ) );
+                readableAttributesCopy.addAll( program.getTrackedEntityAttributes().stream()
+                    .filter( att -> !att.getSkipSynchronization() ).collect( Collectors.toSet() ) );
             }
         }
         else
